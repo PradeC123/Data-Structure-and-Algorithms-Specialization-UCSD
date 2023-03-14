@@ -61,3 +61,54 @@ def car_fueling(d,m,stop_arr):
 #m = 250 
 #stop_arr = [100, 150]
 #print(car_fueling(d,m,stop_arr))
+
+###------------------------------------------------------------------------### 
+### Question 4 : Maximum Advertisement Revenue 
+
+###------------------------------------------------------------------------### 
+### Question 5 : Collecting Signatures 
+
+###------------------------------------------------------------------------### 
+### Question 6 : Maximum Number of Prizes 
+def max_price(n):
+    sum = 1
+    cntr = 1
+    lst = []
+    while (n >= sum):
+        lst.append(cntr)
+        cntr += 1 
+        sum += cntr
+    sum -=cntr
+    lst[-1] += n - sum
+    return(lst)
+
+print(max_price(22))
+
+###------------------------------------------------------------------------### 
+### Question 7 : Maxnimum Salary
+
+def last_num(n):
+    digit = 0
+    while(n!=0):
+        digit = n % 10 
+        n = n // 10
+    if n == 0:
+        return digit
+    
+def IsgreaterEqual(digit, maxdigit):
+    if maxdigit == None:
+        return True
+    return last_num(digit) >= last_num(maxdigit)
+
+def LargestNumber(digit_arr):
+    largest_str = ""
+    while(len(digit_arr)!=0):
+        max_digit = None  # initialize to None instead of -1
+        for digit in digit_arr:
+            if IsgreaterEqual(digit, max_digit):
+                max_digit = digit
+        digit_arr.remove(max_digit)
+        largest_str += str(max_digit)  # add the max_digit to the output string
+    return largest_str  
+            
+print(LargestNumber([23,41,39,100]))
