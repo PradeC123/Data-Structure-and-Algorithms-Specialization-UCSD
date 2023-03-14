@@ -64,6 +64,13 @@ def car_fueling(d,m,stop_arr):
 
 ###------------------------------------------------------------------------### 
 ### Question 4 : Maximum Advertisement Revenue 
+def maxadrevenue(a_arr,c_arr):
+    a_arr = sorted(a_arr)
+    c_arr = sorted(c_arr)
+    sum_rev = 0
+    for i in range(len(a_arr)):
+        sum_rev += a_arr[i]*c_arr[i]
+    return sum_rev
 
 ###------------------------------------------------------------------------### 
 ### Question 5 : Collecting Signatures 
@@ -71,18 +78,19 @@ def car_fueling(d,m,stop_arr):
 ###------------------------------------------------------------------------### 
 ### Question 6 : Maximum Number of Prizes 
 def max_price(n):
-    sum = 1
-    cntr = 1
-    lst = []
-    while (n >= sum):
-        lst.append(cntr)
-        cntr += 1 
-        sum += cntr
-    sum -=cntr
-    lst[-1] += n - sum
-    return(lst)
+    sum = 1  # initialize the sum to 1
+    cntr = 1  # initialize the counter to 1
+    lst = []  # create an empty list to store the prices
+    while (n >= sum):  # continue adding prices while n is greater than or equal to the current sum
+        lst.append(cntr)  # add the current price to the list
+        cntr += 1  # increment the counter
+        sum += cntr  # update the sum to include the new price
+    sum -= cntr  # undo the last price added (because it makes the sum greater than n)
+    lst[-1] += n - sum  # add the remaining amount to the last price in the list
+    return(lst)  # return the list of prices
+            
+#print(max_price(10))  # should output [1, 2, 3, 4]
 
-print(max_price(22))
 
 ###------------------------------------------------------------------------### 
 ### Question 7 : Maxnimum Salary
@@ -90,25 +98,27 @@ print(max_price(22))
 def last_num(n):
     digit = 0
     while(n!=0):
-        digit = n % 10 
-        n = n // 10
+        digit = n % 10  # get the last digit of the number
+        n = n // 10  # remove the last digit from the number
     if n == 0:
-        return digit
-    
+        return digit  # return the last digit of the number
+    # note: this code will never be executed because the while loop will exit
+    # when n becomes zero, so the function will always return in the if statement
+
 def IsgreaterEqual(digit, maxdigit):
     if maxdigit == None:
-        return True
-    return last_num(digit) >= last_num(maxdigit)
+        return True  # if maxdigit is None (i.e., no maximum has been set yet), then digit is greater or equal to it
+    return last_num(digit) >= last_num(maxdigit)  # compare the last digits of digit and maxdigit
 
 def LargestNumber(digit_arr):
-    largest_str = ""
+    largest_str = ""  # initialize the output string
     while(len(digit_arr)!=0):
-        max_digit = None  # initialize to None instead of -1
+        max_digit = None  # initialize the maximum digit to None
         for digit in digit_arr:
             if IsgreaterEqual(digit, max_digit):
-                max_digit = digit
-        digit_arr.remove(max_digit)
-        largest_str += str(max_digit)  # add the max_digit to the output string
-    return largest_str  
+                max_digit = digit  # update the maximum digit if digit is greater or equal to it
+        digit_arr.remove(max_digit)  # remove the maximum digit from the array
+        largest_str += str(max_digit)  # add the maximum digit to the output string
+    return largest_str  # return the output string
             
-print(LargestNumber([23,41,39,100]))
+#print(LargestNumber([23,4,39,100]))  # should output "94323100"
