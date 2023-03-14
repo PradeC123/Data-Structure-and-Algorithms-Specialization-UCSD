@@ -30,7 +30,7 @@ public class Course1Week2Assignment {
     }
     // Slow fibonacci computation
     public static int Fibonacci_series(int n) {
-        if (n <= 1) {
+        if (n <=  1) {
             return n;
         } else {
             return Fibonacci_series(n-1) + Fibonacci_series(n-2);
