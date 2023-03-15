@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<string.h>
 
 //---------------------------------------------------------------------------- 
 // Question 1 : Money Change 
@@ -33,7 +34,7 @@ double optimal_value_loot(int capacity, int weights[], int values[], int n){
     for(int i = 0; i < n; i++){
         cost_per_weight[i] = values[i] / weights[i];
     }
-    while(capacity! = 0){
+    while (capacity != 0){ 
         //Find the item with the highest cost per weight 
         int indMaxweight = 0;
         for(int i = 1; i < n; i++){
@@ -54,14 +55,14 @@ double optimal_value_loot(int capacity, int weights[], int values[], int n){
         value += min_cap * cost_per_weight[indMaxweight];
 
         // Remove the item with the highest cost per weight 
-        for(int i = indMaxweightl i < n-1; i++){
+        for(int i = indMaxweight ; i < n-1; i++){
             weights[i] = weights[i+1];
             values[i] = values[i+1];
             cost_per_weight[i] = cost_per_weight[i+1];
         }
         n--;
-
     }
+    return value;
 }
 //---------------------------------------------------------------------------- 
 // Question 3: Maximum Loot Price 
@@ -72,7 +73,7 @@ int car_fueling(int d, int m, int stop_arr[], int len){
     stop_arr[len] = d;
     for(int i = 0; i < len; i++){
         if (stop_arr[i] + m < stop_arr[i+1]){
-            return -1
+            return -1;
         }
          if ((stop_arr[i] < m + stop_fueling) && (stop_arr[i+1] > m + stop_fueling)) {
             stop_fueling = stop_arr[i];
@@ -87,3 +88,55 @@ int car_fueling(int d, int m, int stop_arr[], int len){
 
 ///------------------------------------------------------------------------### 
 /// Question 4 : Maximum Advertisement Revenue
+
+///------------------------------------------------------------------------### 
+/// Question 5 : Maximum Number of Prizes 
+
+///------------------------------------------------------------------------### 
+/// Question 6 : Maximum Number of Prizes 
+int* max_price(int n){
+    int sum = 1;
+    int cntr = 1; 
+    int* lst = calloc(cntr, sizeof(int));
+    while (n >= sum){
+        lst[cntr - 1] = cntr;
+        cntr += 1;
+        sum += cntr;
+        if (cntr > 1) {
+            lst = realloc(lst, cntr * sizeof(int));  // resize lst if necessary
+        }
+    }
+    sum -= cntr;
+    lst[cntr - 2] += n - sum;
+    return lst;
+}
+
+int main() {
+    int* result = max_price(15);
+    for (int i = 0; i < 10; i++) {
+        printf("%d ", result[i]);
+    }
+    free(result); // don't forget to free the dynamically allocated memory
+    return 0;
+}
+
+///------------------------------------------------------------------------### 
+/// Question 7 : Maximum Salary  
+int last_num(int n){
+    int digit = 0;
+    while(n!=0){
+        digit = n%10; // get the last digit of the number
+        n = n / 10; // remove the last digit of the number 
+    }
+    return digit; // return the last number of the digit
+}
+
+int IsgreaterEqual(int digit, int maxdigit){
+    if (maxdigit == -1){
+        return 1; // if maxdigit is -1 
+    }
+    return last_num(digit) >= last_num(maxdigit);
+}
+
+
+

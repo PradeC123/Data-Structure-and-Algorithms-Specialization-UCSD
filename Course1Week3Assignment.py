@@ -101,7 +101,6 @@ def max_price(n):
             
 #print(max_price(10))  # should output [1, 2, 3, 4]
 
-
 ###------------------------------------------------------------------------### 
 ### Question 7 : Maxnimum Salary
 
