@@ -87,8 +87,20 @@ int car_fueling(int d, int m, int stop_arr[], int len){
 }
 
 ///------------------------------------------------------------------------### 
-/// Question 4 : Maximum Advertisement Revenue
+/// Question 4 : Maximum Advertisement Revenue 
+int cmpfunc(const void *a, const void *b) {
+    return (*(int*) a - *(int*) b);
+}
 
+long long max_ad_revenue(int *a_arr, int *c_arr, int n) {
+    qsort(a_arr, n, sizeof(int), cmpfunc);
+    qsort(c_arr, n, sizeof(int), cmpfunc);
+    long long sum_rev = 0;
+    for (int i = 0; i < n; i++) {
+        sum_rev += (long long) a_arr[i] * c_arr[i];
+    }
+    return sum_rev;
+}
 ///------------------------------------------------------------------------### 
 /// Question 5 : Maximum Number of Prizes 
 
@@ -111,6 +123,7 @@ int* max_price(int n){
     return lst;
 }
 
+/*
 int main() {
     int* result = max_price(15);
     for (int i = 0; i < 10; i++) {
@@ -119,6 +132,7 @@ int main() {
     free(result); // don't forget to free the dynamically allocated memory
     return 0;
 }
+*/
 
 ///------------------------------------------------------------------------### 
 /// Question 7 : Maximum Salary  
@@ -136,6 +150,28 @@ int IsgreaterEqual(int digit, int maxdigit){
         return 1; // if maxdigit is -1 
     }
     return last_num(digit) >= last_num(maxdigit);
+}
+
+char* largest_number(int* digit_arr, int len) {
+    char* largest_str = (char*) malloc((len + 1) * sizeof(char));
+    largest_str[0] = '\0';
+    int max_digit, max_index;
+    while (len > 0) {
+        max_digit = digit_arr[0];
+        max_index = 0;
+        for (int i = 1; i < len; i++) {
+            if (is_greater_equal(digit_arr[i], max_digit)) {
+                max_digit = digit_arr[i];
+                max_index = i;
+            }
+        }
+        char max_digit_str[11];
+        sprintf(max_digit_str, "%d", max_digit);
+        strcat(largest_str, max_digit_str);
+        digit_arr[max_index] = digit_arr[len - 1];
+        len--;
+    }
+    return largest_str;
 }
 
 
