@@ -76,20 +76,6 @@ public class Course1Week3Assignment {
         }
         return Math.round(value_loot * 10000.0) / 10000.0;        
     }
-    /* 
-    def car_fueling(d,m,stop_arr):
-    stop_cnt = 0      # initialize the number of stops made to 0
-    stop_fueling = 0  # initialize the distance of the last fuel stop to 0
-    stop_arr.append(d)  # append the destination to the list of stops
-    for i in range(0,len(stop_arr)-1):  # iterate over the list of stops
-        if stop_arr[i] + m < stop_arr[i+1]:  # if the car can't reach the next stop without refueling
-            return -1  # return -1 indicating it's impossible to reach the destination
-        if (stop_arr[i] < m + stop_fueling) and (stop_arr[i+1] > m + stop_fueling):  # if the car needs to refuel at the current stop
-            stop_fueling = stop_arr[i]  # set the distance of the last fuel stop to the current stop
-            stop_cnt += 1  # increment the number of stops made
-        if stop_cnt == 0 and i == len(stop_arr) - 1:  # if no stops were made and the destination has been reached
-            return 0  # return 0 indicating no stops were needed
-    return stop_cnt  # return the number of stops made*/
 
     //-------------------------------------------------------------------------//
     // Question 3 : Maximum Value of the Loot (Greedy Implementation )
