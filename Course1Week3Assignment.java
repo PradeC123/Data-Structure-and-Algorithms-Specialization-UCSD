@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.Arrays;
 
 public class Course1Week3Assignment {
     //-------------------------------------------------------------------------//
@@ -74,6 +75,43 @@ public class Course1Week3Assignment {
             isVisited[indMaxWeight] = true;
         }
         return Math.round(value_loot * 10000.0) / 10000.0;        
+    }
+    /* 
+    def car_fueling(d,m,stop_arr):
+    stop_cnt = 0      # initialize the number of stops made to 0
+    stop_fueling = 0  # initialize the distance of the last fuel stop to 0
+    stop_arr.append(d)  # append the destination to the list of stops
+    for i in range(0,len(stop_arr)-1):  # iterate over the list of stops
+        if stop_arr[i] + m < stop_arr[i+1]:  # if the car can't reach the next stop without refueling
+            return -1  # return -1 indicating it's impossible to reach the destination
+        if (stop_arr[i] < m + stop_fueling) and (stop_arr[i+1] > m + stop_fueling):  # if the car needs to refuel at the current stop
+            stop_fueling = stop_arr[i]  # set the distance of the last fuel stop to the current stop
+            stop_cnt += 1  # increment the number of stops made
+        if stop_cnt == 0 and i == len(stop_arr) - 1:  # if no stops were made and the destination has been reached
+            return 0  # return 0 indicating no stops were needed
+    return stop_cnt  # return the number of stops made*/
+
+    //-------------------------------------------------------------------------//
+    // Question 3 : Maximum Value of the Loot (Greedy Implementation )
+    public static int car_fueling(int d, int m, int[] stop_arr){
+        int stop_cnt = 0;
+        int stop_fueling = 0;
+        int[] stops = Arrays.copyOf(stop_arr, stop_arr.length + 1);
+        stops[stops.length - 1] = d;
+        //stop_arr[stop_arr.length - 1] = d; 
+        for(int i = 0; i < stops.length-1; i++){
+            if (stops[i] + m < stops[i+1]){
+                return -1;
+            }
+            if ((stops[i] <= m + stop_fueling) && (stops[i+1] >= m + stop_fueling)){
+                stop_fueling = stop_arr[i];
+                stop_cnt += 1;
+            }
+            if ((stop_cnt == 0) && (i == stops.length - 2)){
+                return 0;
+            }
+        }
+        return stop_cnt;
     }
 
     //--------------------------TESTING THE CODE------------------------ 
@@ -178,6 +216,48 @@ public class Course1Week3Assignment {
     System.out.println("Test case 5: Expected = " + expected_5 + ", Result = " + result_5);
     System.out.println("Test case 6: Expected = " + expected_6 + ", Result = " + result_6);
     System.out.println("Test case 7: Expected = " + expected_7 + ", Result = " + result_7);
+
+    // ---------------- Question 3-----Test Case 3-------------------
+    System.out.println("Test Cases for Question 3:\n");
+     // Test case 1
+     int d1 = 950;
+     int m1 = 400;
+     int[] stops1 = {200, 375, 550, 750};
+     int expected_31 = 2;
+     int result_31 = car_fueling(d1, m1, stops1);
+     System.out.println("Test case 1 - Expected Result: " + expected_31 + ", Actual Result: " + result_31);
+ 
+     // Test case 2
+     int d2 = 10;
+     int m2 = 3;
+     int[] stops2 = {1,2,4,6,8};
+     int expected_32 = 4;
+     int result_32 = car_fueling(d2, m2, stops2);
+     System.out.println("Test case 2 - Expected Result: " + expected_32 + ", Actual Result: " + result_32);
+ 
+     // Test case 3
+     int d3 = 500;
+     int m3 = 100;
+     int[] stops3 = {100, 200, 300, 400};
+     int expected_33 = 4;
+     int result_33 = car_fueling(d3, m3, stops3);
+     System.out.println("Test case 3 - Expected Result: " + expected_33 + ", Actual Result: " + result_33);
+ 
+     // Test case 4
+     int d4 = 550;
+     int m4 = 100;
+     int[] stops4 = {100, 200, 300, 400};
+     int expected_34 = -1;
+     int result_34 = car_fueling(d4, m4, stops4);
+     System.out.println("Test case 4 - Expected Result: " + expected_34 + ", Actual Result: " + result_34);
+ 
+     // Test case 5
+     int d5 = 500;
+     int m5 = 200;
+     int[] stops5 = {50, 200, 350};
+     int expected_35 = 3;
+     int result_35 = car_fueling(d5, m5, stops5);
+     System.out.println("Test case 5 - Expected Result: " + expected_35 + ", Actual Result: " + result_35);
 
     }
 }

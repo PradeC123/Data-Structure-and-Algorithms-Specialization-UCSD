@@ -75,7 +75,7 @@ int car_fueling(int d, int m, int stop_arr[], int len){
         if (stop_arr[i] + m < stop_arr[i+1]){
             return -1;
         }
-         if ((stop_arr[i] < m + stop_fueling) && (stop_arr[i+1] > m + stop_fueling)) {
+         if ((stop_arr[i] =< m + stop_fueling) && (stop_arr[i+1] >= m + stop_fueling)) {
             stop_fueling = stop_arr[i];
             stop_cnt += 1;
         }

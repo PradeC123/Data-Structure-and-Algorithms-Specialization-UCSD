@@ -48,11 +48,12 @@ def optimal_value_loot(capacity, weights, values):
 def car_fueling(d,m,stop_arr):
     stop_cnt = 0      # initialize the number of stops made to 0
     stop_fueling = 0  # initialize the distance of the last fuel stop to 0
-    stop_arr.append(d)  # append the destination to the list of stops
+    stop_arr.append(d) 
+     # append the destination to the list of stops
     for i in range(0,len(stop_arr)-1):  # iterate over the list of stops
         if stop_arr[i] + m < stop_arr[i+1]:  # if the car can't reach the next stop without refueling
             return -1  # return -1 indicating it's impossible to reach the destination
-        if (stop_arr[i] < m + stop_fueling) and (stop_arr[i+1] > m + stop_fueling):  # if the car needs to refuel at the current stop
+        if (stop_arr[i] <= m + stop_fueling) and (stop_arr[i+1] >= m + stop_fueling):  # if the car needs to refuel at the current stop
             stop_fueling = stop_arr[i]  # set the distance of the last fuel stop to the current stop
             stop_cnt += 1  # increment the number of stops made
         if stop_cnt == 0 and i == len(stop_arr) - 1:  # if no stops were made and the destination has been reached
@@ -60,9 +61,10 @@ def car_fueling(d,m,stop_arr):
     return stop_cnt  # return the number of stops made
 
 
-#d = 950
-#m = 400 
-#stop_arr = [200, 375, 550, 950]
+d = 500
+m = 200 
+stop_arr = [50,200,350]
+print(car_fueling(d,m,stop_arr))
 #d = 10 
 #m = 3 
 #stop_arr = [1,2,5,9]
@@ -70,7 +72,6 @@ def car_fueling(d,m,stop_arr):
 #d = 200 
 #m = 250 
 #stop_arr = [100, 150]
-#print(car_fueling(d,m,stop_arr))
 
 ###------------------------------------------------------------------------### 
 ### Question 4 : Maximum Advertisement Revenue 
