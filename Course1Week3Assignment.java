@@ -78,7 +78,7 @@ public class Course1Week3Assignment {
     }
 
     //-------------------------------------------------------------------------//
-    // Question 3 : Maximum Value of the Loot (Greedy Implementation )
+    // Question 3 : Car Fueling (Greedy Implementation )
     public static int car_fueling(int d, int m, int[] stop_arr){
         int stop_cnt = 0;
         int stop_fueling = 0;
