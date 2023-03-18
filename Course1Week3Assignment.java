@@ -99,6 +99,24 @@ public class Course1Week3Assignment {
         }
         return stop_cnt;
     }
+    //-------------------------------------------------------------------------//
+    // Question 6 : Maximum Number of Prizes
+    public static int[] arrMaxprice(int n){
+        int sum = 1;
+        int cntr = 1;
+        int[] lst = new int[cntr];
+        while(n>=sum){
+            lst[cntr - 1] = cntr; 
+            cntr += 1;
+            sum += cntr;
+            lst = Arrays.copyOf(lst, cntr); 
+        }
+        sum -= cntr;
+        lst[cntr-2] += n - sum; 
+        return lst; 
+    }
+    //-------------------------------------------------------------------------//
+    // Question 7 :  Maximum Salary
 
     //--------------------------TESTING THE CODE------------------------ 
     public static void main(String[] args) {

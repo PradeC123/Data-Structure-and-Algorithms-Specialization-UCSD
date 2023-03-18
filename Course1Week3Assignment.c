@@ -75,7 +75,7 @@ int car_fueling(int d, int m, int stop_arr[], int len){
         if (stop_arr[i] + m < stop_arr[i+1]){
             return -1;
         }
-         if ((stop_arr[i] =< m + stop_fueling) && (stop_arr[i+1] >= m + stop_fueling)) {
+         if ((stop_arr[i] <= m + stop_fueling) && (stop_arr[i+1] >= m + stop_fueling)) {
             stop_fueling = stop_arr[i];
             stop_cnt += 1;
         }
@@ -160,7 +160,7 @@ char* largest_number(int* digit_arr, int len) {
         max_digit = digit_arr[0];
         max_index = 0;
         for (int i = 1; i < len; i++) {
-            if (is_greater_equal(digit_arr[i], max_digit)) {
+            if (IsgreaterEqual(digit_arr[i], max_digit)) {
                 max_digit = digit_arr[i];
                 max_index = i;
             }

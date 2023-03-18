@@ -61,10 +61,10 @@ def car_fueling(d,m,stop_arr):
     return stop_cnt  # return the number of stops made
 
 
-d = 500
-m = 200 
-stop_arr = [50,200,350]
-print(car_fueling(d,m,stop_arr))
+#d = 500
+#m = 200 
+#stop_arr = [50,200,350]
+#print(car_fueling(d,m,stop_arr))
 #d = 10 
 #m = 3 
 #stop_arr = [1,2,5,9]
