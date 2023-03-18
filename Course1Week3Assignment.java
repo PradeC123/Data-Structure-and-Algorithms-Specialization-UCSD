@@ -1,10 +1,8 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Course1Week3Assignment {
     //-------------------------------------------------------------------------//
     // Question 1 : Money Change 
-
     // Finding the maximum element in an array
     public static int[] findMax(int[] arr){
         int max = arr[0];
@@ -100,6 +98,17 @@ public class Course1Week3Assignment {
         return stop_cnt;
     }
     //-------------------------------------------------------------------------//
+    // Question 5 : Maximum Advertisment Revenue 
+    public static int maxaddrevenue(int[] a, int[] c){
+        Arrays.sort(a);
+        Arrays.sort(c);
+        int sum_arr = 0; 
+        for(int i = 0; i < a.length; i++){
+            sum_arr += a[i]*c[i];
+        }
+        return sum_arr; 
+    }
+    //-------------------------------------------------------------------------//
     // Question 6 : Maximum Number of Prizes
     public static int[] arrMaxprice(int n){
         int sum = 1;
@@ -117,7 +126,39 @@ public class Course1Week3Assignment {
     }
     //-------------------------------------------------------------------------//
     // Question 7 :  Maximum Salary
-
+    public static int last_num(int n){
+        int digit = 0; 
+        while(n != 0){
+            digit = n % 10;
+            n = n / 10; 
+        }
+        if (n == 0){
+            return digit;
+        }
+        return digit;
+    }
+    public static boolean IsgreaterEqual(int digit,int maxdigit){
+        if (maxdigit == (Integer) null){
+            return true;
+        }
+        return last_num(digit) >= last_num(maxdigit); 
+    }
+    public static int LargestNumber(int[] digit_arr){
+        String largest_str = "";
+        while(digit_arr.length != 0){
+            Integer max_digit = null;
+            int max_index = 0;
+            for(int i = 0; i < digit_arr.length; i++){
+                if(IsgreaterEqual(digit_arr[i], max_digit)){
+                    max_digit = digit_arr[i]; 
+                    max_index = i; 
+                }
+            digit_arr = removeElement(digit_arr, max_index); 
+            largest_str = largest_str + String.valueOf(max_digit);
+            }
+        }
+        return Integer.parseInt(largest_str);
+    }
     //--------------------------TESTING THE CODE------------------------ 
     public static void main(String[] args) {
     System.out.println("Test Cases for Question 1:\n");

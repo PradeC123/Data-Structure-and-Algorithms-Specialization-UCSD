@@ -129,6 +129,6 @@ def LargestNumber(digit_arr):
                 max_digit = digit  # update the maximum digit if digit is greater or equal to it
         digit_arr.remove(max_digit)  # remove the maximum digit from the array
         largest_str += str(max_digit)  # add the maximum digit to the output string
-    return largest_str  # return the output string
+    return int(largest_str)  # return the output string
             
 #print(LargestNumber([23,4,39,100]))  # should output "94323100"
