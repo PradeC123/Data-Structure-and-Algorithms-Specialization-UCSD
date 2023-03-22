@@ -26,6 +26,56 @@ int* searchindx_arr(int arr[],int arrlen, int keys[], int keyslen){
     return lst_index; 
 }
 //----------------------------------------------------------------------
+// Question 2 Majority Element: 
+int getMajorityElement(int[] arr, int left, int right){
+    if(left == right){
+        return arr[left]
+    }
+    int mid = left + (right - left) / 2; 
+    int left_majority = getMajorityElement(arr, left, mid);
+    int right_majority = getMajorityElement(arr, mid+1 , right); 
+
+    int left_count = 0; 
+    for(int i = left; i < right + 1; i++){
+        if(a[i] == left_majority){
+            left_count +=1; 
+        }
+    }
+    
+    int right_count = 0; 
+    for(int = left; i < right + 1; i++){
+        if (a[i] == right_majority){
+            right_count += 1; 
+        }
+    }
+
+    if(left_count > (right - left + 1) / 2 ){
+        return left_majority;
+    }
+    else if(right_count > (right - left + 1) / 2){
+        return right_majority;
+    }
+    else{
+        return -1;
+    }
+} 
+//----------------------------------------------------------------------
+// Question 3 Improving Quick Sort: 
+
+
+//----------------------------------------------------------------------
+// Question 4 Number of Inversion: 
+
+//----------------------------------------------------------------------
+// Question 5 Organizing a Lottery: 
+
+//----------------------------------------------------------------------
+// Question 6 Closest Point: 
+
+
+//----------------------------------------------------------------------
+// Int Main: 
+
 int main() {
     int arr[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
     int keys[] = {23, 8, 91, 100, 5};
