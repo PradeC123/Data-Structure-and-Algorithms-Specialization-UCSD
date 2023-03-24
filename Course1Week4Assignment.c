@@ -65,7 +65,54 @@ int getMajorityElement(int[] arr, int left, int right){
 
 //----------------------------------------------------------------------
 // Question 4 Number of Inversion: 
+int mergeSortInv(int[] arr, int n){
+    int inversions = 0; 
+    if (n > 1){
+        int mid = n / 2; 
+        int left_hand[mid];
+        int right_hand[n-mid];
 
+        //Filling in the elements for the left_hand array
+        for(int i = 0; i < mid; i++){
+            left_hand[i] = arr[i];
+        }
+
+        //Fill the right_hand array elements
+        for(int i = mid; i < n; i++){
+            right_hand[i-mid] = arr[i];
+        }
+        // Recursive Calls 
+        int left_inversions = mergeSortInv(left_hand, mid);
+        int right_inversions = mergeSortInv(right_hand, n - mid);
+        inversions += right_inversions + right_inversions; 
+
+        // Merge the two arrays
+        int i = j = k = 0; 
+        while(i < mid && j < (n-mid)){
+            if(left_hand[i] < right_hand[j]){
+                arr[k] = left_hand[i];
+                i++;
+            }
+            else{
+                arr[k] = right_hand[j];
+                inversions += (mid - i);
+                j++;
+            }
+            k++; 
+        }
+        while(i < mid){
+            arr[k] = left_hand[i];
+            i++;
+            k++;
+        }
+        while( j < (n-mid)){
+            arr[k] = right_hand[j];
+            j++;
+            k++
+        }
+    }
+    return inversion; 
+}
 //----------------------------------------------------------------------
 // Question 5 Organizing a Lottery: 
 
