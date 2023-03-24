@@ -95,10 +95,21 @@ def MergeSortInv(arr):
         
     return inversions
 ###---------------------------------------------------------------------------------####
-## Question 4: Maximum Element
-
-###---------------------------------------------------------------------------------####
 ## Question 5: Organizing a Lottery 
+def cntlottery(arr, elem):
+    if len(arr) <=1:
+        if arr[0][0] <= elem and arr[0][1] >= elem:
+            return 1 
+        return 0 
+    mid = len(arr) // 2
+
+    left_arr = arr[:mid]
+    right_arr = arr[mid:]
+
+    left_cntlottery = cntlottery(left_arr, elem)
+    right_cntlottery = cntlottery(right_arr, elem)
+
+    return left_cntlottery + right_cntlottery
 
 ###---------------------------------------------------------------------------------####
 ## Question 6: Closest Points
