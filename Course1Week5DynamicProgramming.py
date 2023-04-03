@@ -36,15 +36,29 @@ def minoperCal(n):
 
 ##------------------------------------------------------------
 ## Question 3: Alignment game
-
-
+def editdistanace(seq1,seq2):
+    n = len(seq1)
+    m = len(seq2)
+    dp = [[0 for j in range(n+1)] for i in range(m+1)]
+    ## Assigning the base cases for the array 
+    for i in range(n+1):
+        dp[m][i] = len(seq1) - i
+    for j in range(m+1):
+        dp[j][n] = len(seq2) - j
+    ## Filling in the elements in the arrays
+    for i in range(n-1,-1,-1):
+        for j in range(m-1,-1,-1):
+            if seq1[i] == seq2[j]:
+                 dp[j][i] = min(dp[j+1][i],dp[j+1][i+1],dp[j][i+1])
+            else:
+                dp[j][i] = 1 + min(dp[j+1][i],dp[j+1][i+1],dp[j][i+1])
+    return dp[0][0]
 ##------------------------------------------------------------
 ## Question 4: Longest Common Subsequence of Two Sequences
 def longestcommonSeq(seq1,seq2):
     n = len(seq1)
     m = len(seq2)
     dp = [[0 for j in range(m+1)] for i in range(n+1)]
-    print(dp)
     for i in range(1,n+1):
         for j in range(1,m+1):
             if seq1[i-1] == seq2[j-1]:
@@ -52,13 +66,18 @@ def longestcommonSeq(seq1,seq2):
             else:
                 dp[i][j] = max(dp[i-1][j],dp[i][j-1])
     return dp[n][m]
-##-----------------------------------------------------------------
-# Test Cases. Question 1, 2 and 4
-#coin_arr = [1,3,4]
-#W = 7
-#print("Min coin change", moneychangeDP(coin_arr,W))
-#print(minoperCal(1000))
-seq1 = [1, 2, 3, 4, 5]
-seq2 = [2, 4, 5, 6]
-result = longestcommonSeq(seq1, seq2)
-print(result) # Output: 3
+##------------------------------------------------------------
+## Question 5: Longest Common Subsequence of Three Sequences
+def lcs3(a, b, c):
+    n, m, l = len(a), len(b), len(c)
+    dp = [[[0 for _ in range(l+1)] for _ in range(m+1)] for _ in range(n+1)]
+    
+    for i in range(1, n+1):
+        for j in range(1, m+1):
+            for k in range(1, l+1):
+                if a[i-1] == b[j-1] == c[k-1]:
+                    dp[i][j][k] = dp[i-1][j-1][k-1] + 1
+                else:
+                    dp[i][j][k] = max(dp[i-1][j][k], dp[i][j-1][k], dp[i][j][k-1])
+    
+    return dp[n][m][l]
