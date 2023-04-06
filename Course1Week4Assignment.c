@@ -115,6 +115,35 @@ int mergeSortInv(int[] arr, int n){
 }
 //----------------------------------------------------------------------
 // Question 5 Organizing a Lottery: 
+int cntLottery(int arr[][2], int n, int elem){
+    // Base case
+    if(n<=1){
+        if((arr[0][0]<=elem)&&(arr[0][1]>=elem)){
+            return 1; 
+        }
+        return 0; 
+    }
+    //Split the array in the left and the right array. 
+    int mid = n/2; 
+    int left_arr[mid][2];
+    int right_arr[n-mid][2];
+    // Filling in the left array
+    for(int i = 0; i < mid; i++){
+        left_arr[i][0] = arr[i][0];
+        left_arr[i][1] = arr[i][1];
+    }
+    // Filling in the right array 
+    for(int i = mid; i < n; i++){
+        right_arr[i-mid][0] = arr[i][0];
+        right_arr[i-mid][1] = arr[i][1]; 
+    }
+    // Recursive call 
+    int leftcntLottery = cntLottery(left_arr, mid, elem);
+    int rightcntLottery = cntLottery(right_arr, n-mid, elem);
+    
+    //returning the sum of the leftcntLottery and the right count Lottery
+    return leftcntLottery + rightcntLottery;
+}
 
 //----------------------------------------------------------------------
 // Question 6 Closest Point: 
@@ -122,7 +151,6 @@ int mergeSortInv(int[] arr, int n){
 
 //----------------------------------------------------------------------
 // Int Main: 
-
 int main() {
     int arr[] = {2, 5, 8, 12, 16, 23, 38, 56, 72, 91};
     int keys[] = {23, 8, 91, 100, 5};
