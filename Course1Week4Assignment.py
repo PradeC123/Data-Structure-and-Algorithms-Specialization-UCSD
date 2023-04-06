@@ -83,7 +83,7 @@ def MergeSortInv(arr):
                 arr[k] = right_half[j]
                 inversions += (mid - i) 
                 j+=1
-            k+=1
+            k+=1                        
         while i < len(left_half):
             arr[k] = left_half[i]
             i+=1 
